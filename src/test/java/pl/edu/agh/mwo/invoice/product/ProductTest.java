@@ -35,6 +35,7 @@ public class ProductTest {
 		Assert.assertThat(new BigDecimal("108"), Matchers.comparesEqualTo(product.getPriceWithTax()));
 	}
 
+	//use case kompiluje sie; semantycznie nieporawne
 	@Test(expected = IllegalArgumentException.class)
 	public void testProductWithNullName() {
 		new OtherProduct(null, new BigDecimal("100.0"));
