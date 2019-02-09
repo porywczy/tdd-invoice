@@ -35,7 +35,7 @@ public class ProductTest {
 		Assert.assertThat(new BigDecimal("108"), Matchers.comparesEqualTo(product.getPriceWithTax()));
 	}
 
-	//use case kompiluje sie; semantycznie nieporawne
+	//use case kompiluje sie; semantycznie niepoprawne
 	@Test(expected = IllegalArgumentException.class)
 	public void testProductWithNullName() {
 		new OtherProduct(null, new BigDecimal("100.0"));
@@ -44,12 +44,12 @@ public class ProductTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testProductWithEmptyName() {
 		new TaxFreeProduct("", new BigDecimal("100.0"));
-	}
+	} 
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testProductWithNullPrice() {
 		new DairyProduct("Banany", null);
-	}
+	} 
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testProductWithNegativePrice() {
