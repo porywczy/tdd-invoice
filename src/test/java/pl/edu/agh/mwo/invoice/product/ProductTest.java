@@ -38,6 +38,7 @@ public class ProductTest {
 	//use case kompiluje sie; semantycznie niepoprawne
 	@Test(expected = IllegalArgumentException.class)
 	public void testProductWithNullName() {
+		//w tym momencie ma poleciec wyjatek
 		new OtherProduct(null, new BigDecimal("100.0"));
 	} 
 
