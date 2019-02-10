@@ -20,6 +20,29 @@ public class InvoiceTest {
 	public void createEmptyInvoiceForTheTest() {
 		invoice = new Invoice();
 	}
+	
+	@Test
+	public void testInvoiceHasNumber() {
+		Integer number = invoice.getNumber();
+		Assert.assertNotNull(number);
+	}
+	
+	@Test
+	public void testInvoiceNumberIsGreaterThanZero() {
+		Integer number = invoice.getNumber();
+		Assert.assertThat(number, Matchers.greaterThan(0));
+	}
+	
+	@Test
+	public void testTwoInvoicesHasDifferentNumber() {
+		Integer number1 = invoice.getNumber();
+		Integer number2 = new Invoice().getNumber();
+		Assert.assertNotEquals(number1, number2);
+	}
+	
+	
+	
+	/////////
 
 	@Test
 	public void testEmptyInvoiceHasEmptySubtotal() {
