@@ -40,7 +40,13 @@ public class InvoiceTest {
 		Assert.assertNotEquals(number1, number2);
 	}
 	
-	
+	/////////
+	@Test
+	public void testPrintedInvoiceHasNumber() {
+		String printedInvoice = invoice.getAsText();
+		String number = invoice.getNumber().toString();
+		Assert.assertThat(printedInvoice, Matchers.containsString("\n"));
+	}
 	
 	/////////
 

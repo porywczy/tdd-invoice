@@ -2,6 +2,7 @@ package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -19,6 +20,30 @@ public class Invoice {
 
 	public Invoice() {
 		this.number = nextNumber++;
+	}
+
+	// + get
+	// + lista produktów
+	// + w postaci ciągu znaków,
+	// + w którym każda linia zawiera
+	// + informacje o kolejnej pozycji na fakturze:
+	// + nazwa, liczba sztuk, cena.
+	// + Nad listą produktów powinien znaleźć się numer faktury.
+	// + Na końcu listy dodatkowa informacja:
+	// + Liczba pozycji: N, gdzie
+	// + N to liczba produktów na fakturze.
+	public String getAsText() {
+		// products > ciag znakow
+		StringBuilder output = new StringBuilder("");
+		output.append(getNumber().toString());
+		int positionNumbers = 0;
+		for (Map.Entry<Product, Integer> entry : products.entrySet()) {
+			// info z klucza mapy
+			output.append("\n" + entry.getKey().getName() + " " + entry.getValue() + " " + entry.getKey().getPrice());
+			positionNumbers += entry.getValue();
+		}
+		output.append(String.valueOf(positionNumbers));
+		return output.toString();
 	}
 
 	public void addProduct(Product product) {
@@ -65,8 +90,8 @@ public class Invoice {
 	}
 
 	public Integer getNumber() {
-//		Random number = new Random();
-//		return number.nextInt(1000);
+		// Random number = new Random();
+		// return number.nextInt(1000);
 		return number;
 
 	}
