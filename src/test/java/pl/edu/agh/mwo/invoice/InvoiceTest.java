@@ -20,35 +20,40 @@ public class InvoiceTest {
 	public void createEmptyInvoiceForTheTest() {
 		invoice = new Invoice();
 	}
-	
+
 	@Test
 	public void testInvoiceHasNumber() {
 		Integer number = invoice.getNumber();
 		Assert.assertNotNull(number);
 	}
-	
+
 	@Test
 	public void testInvoiceNumberIsGreaterThanZero() {
 		Integer number = invoice.getNumber();
 		Assert.assertThat(number, Matchers.greaterThan(0));
 	}
-	
+
 	@Test
 	public void testTwoInvoicesHasDifferentNumber() {
 		Integer number1 = invoice.getNumber();
 		Integer number2 = new Invoice().getNumber();
 		Assert.assertNotEquals(number1, number2);
 	}
-	
-	/////////
+
 	@Test
 	public void testPrintedInvoiceHasNumber() {
 		String printedInvoice = invoice.getAsText();
 		String number = invoice.getNumber().toString();
-		Assert.assertThat(printedInvoice, Matchers.containsString("\n"));
+		Assert.assertThat(printedInvoice, Matchers.containsString("140"));
 	}
-	
-	/////////
+
+	@Test
+	public void testAddingTheSameProductTwice() {
+		invoice.addProduct(new TaxFreeProduct("chleb", new BigDecimal("5")));
+		invoice.addProduct(new TaxFreeProduct("chleb", new BigDecimal("5")));
+		Assert.assertThat(invoice.getAsText(), Matchers.containsString("Chleb 2 5"));
+
+	}
 
 	@Test
 	public void testEmptyInvoiceHasEmptySubtotal() {
